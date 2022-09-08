@@ -1,0 +1,28 @@
+/******************** TAG SELECTORS ********************/
+body {
+    background-color: #FFF5E4;
+}
+
+img:hover {
+    background-color: gold;
+}
+
+/******************** CLASS SELECTORS ********************/
+.bacon {
+    background-color: #7FB77E;
+}
+
+.broccoli {
+    background-color: #850E35;
+}
+
+.circular {
+    border-radius: 100%;
+}
+
+/******************** ID SELECTORS ********************/
+#heading {
+    font-size: 100px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #EE6983;
+}
