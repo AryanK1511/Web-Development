@@ -23,3 +23,9 @@ Font Families in CSS:
 3. Cursive
 4. Monospace
 5. Fantasy
+
+Notes: 
+- 100% in terms of font size is 16px.
+- 1em is the width of the capital letter 'M'. In modern days, 1em is 16px.
+- We use these relative font sizes so that the default font sizes can be changed for people with impairments.
+- Relative font sizes are inherited.
