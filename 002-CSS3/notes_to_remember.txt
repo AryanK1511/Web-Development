@@ -1,0 +1,25 @@
+Positions in CSS:
+Static: All HTML elements are static in their position by default. It means keeping to the default HTML rules.
+Relative: This allows us to position the element that we select relative to how it would’ve been positioned if it were static.
+- When you move an element that as a relative position, it doesn’t affect the position of anything else on the screen.
+- When we change the coordinate properties, it means that we are giving it a margin from the older position.
+Absolute: Positioning the image element relative to the parent
+- This affects the flow of the HTML document. When you use absolute positioning, you remove the element from the flow of the document.
+Fixed: The object stays exactly in the same position even when you scroll
+
+Display in CSS:
+Inline: Takes up only the space required by the element and allows other elements to be present in the same line. Width property cannot be set for inline elements.
+Block: Takes up the whole line and the next element starts from the next line. Width property can be set for block elements.
+Inline Block: This is a combination of inline and block elements. They are basically inline elements for which the width property can be set.
+
+Centering in CSS:
+Text-align: centre; on the body only works if you have inline elements or the width of the element covers the entire viewport. In other cases, you have to use the margin property and use auto.
+For example, you can use the following line of code to center an element horizontally.
+margin: 0 auto;
+
+Font Families in CSS:
+1. Serif
+2. Sans Serif
+3. Cursive
+4. Monospace
+5. Fantasy
