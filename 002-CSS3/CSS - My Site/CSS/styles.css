@@ -100,3 +100,34 @@ hr {
     width: 30%;
     margin: 0 auto;
 }
+
+.contact-me {
+    padding: 30px 0;
+}
+
+.contact-message {
+    width: 40%;
+    margin: 40px auto;
+}
+
+.bottom-container {
+    background-color: #66BFBF;
+    padding: 20px 0;
+}
+
+.footer-link {
+    color: #11999E;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    margin: 10px 20px;
+}
+
+.footer-link:hover {
+    color: #EAF6F6;
+}
+
+#end {
+    padding: 30px 0 0 0;
+    color: #EAF6F6;
+    font-size: 0.75rem;
+}
