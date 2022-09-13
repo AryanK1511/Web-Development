@@ -103,3 +103,7 @@ body {
     text-align: center;
     padding-bottom: 3%;
 }
+
+.carousel-item {
+    padding: 7% 15%;
+}
