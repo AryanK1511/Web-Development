@@ -124,3 +124,15 @@ body {
 .pricing-col {
     padding: 3% 2%;
 }
+
+/* Making Website Responsive */
+@media (max-width: 1028px) {
+    #title {
+        text-align: center;
+    }
+    .title-image {
+        position: static;
+        transform: rotate(0);
+        width: 60%;
+    }
+}
