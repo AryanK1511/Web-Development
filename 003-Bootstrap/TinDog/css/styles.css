@@ -125,6 +125,38 @@ body {
     padding: 3% 2%;
 }
 
+/* CTA Section */
+#cta {
+    text-align: center;
+    background-color: #ff4c68;
+}
+
+#cta h3 {
+    width: 60%;
+    color: #fff;
+    margin: 0 auto;
+    padding: 10% 0 0 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    line-height: 1.5;
+    font-size: 3rem;
+}
+
+/* Footer */
+#footer {
+    background-color: #fff;
+    text-align: center;
+    margin: 5% 0;
+}
+
+.icons {
+    margin: 0 0 20px 0;
+}
+
+.icons i {
+    padding: 0 10px;
+}
+
 /* Making Website Responsive */
 @media (max-width: 1028px) {
     #title {
