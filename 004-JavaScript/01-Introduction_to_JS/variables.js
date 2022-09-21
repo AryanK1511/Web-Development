@@ -14,8 +14,3 @@ function test() {
     console.log("a is " + a);
     console.log("b is " + b);
 }
-
-
-// String Concatenation
-var s = "Hello " + "World";
-console.log(s);
