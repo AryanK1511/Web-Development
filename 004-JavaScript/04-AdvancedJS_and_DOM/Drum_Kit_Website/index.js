@@ -12,7 +12,29 @@ let tom4Sound = new Audio('./sounds/tom-4.mp3');
 // Using a loop to add event listeners to all of the buttons
 for (let i = 0; i < numberOfDrumButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener('click', function() {
-        this
-        crashSound.play();
+        var buttonInnerHTML = this.innerHTML;
+        switch (buttonInnerHTML) {
+            case 'w':
+                crashSound.play();
+                break;
+            case 'a':
+                kickBassSound.play();
+                break;
+            case 's':
+                snareSound.play();
+                break;
+            case 'd':
+                tom1Sound.play();
+                break;
+            case 'j':
+                tom2Sound.play();
+                break;
+            case 'k':
+                tom3Sound.play();
+                break;
+            case 'l':
+                tom4Sound.play();
+                break;
+        }
     });    
 }
