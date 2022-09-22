@@ -13,6 +13,8 @@ let tom4Sound = new Audio('./sounds/tom-4.mp3');
 for (let i = 0; i < numberOfDrumButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener('click', function() {
         var buttonInnerHTML = this.innerHTML;
+
+        // Using switch case to determine which button was clicked
         switch (buttonInnerHTML) {
             case 'w':
                 crashSound.play();
@@ -35,6 +37,8 @@ for (let i = 0; i < numberOfDrumButtons; i++) {
             case 'l':
                 tom4Sound.play();
                 break;
+            default:
+                console.log(buttonInnerHTML);
         }
     });    
 }
