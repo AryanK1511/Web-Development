@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+// urlencoded is used when you want to get data from a form
 app.use(bodyParser.urlencoded({extended: true}));
 
 const port = 3000;
