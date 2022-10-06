@@ -61,7 +61,10 @@ app.post("/failure", function(req, res) {
     res.redirect("/");
 })
 
-app.listen(3000, () => {
+// process.env.PORT helps hosting platform to choose the port by itself
+// It is a dynamic port
+// But this doesnt run locally. So we add an or statement
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server is running on port 3000.");
 })
 
