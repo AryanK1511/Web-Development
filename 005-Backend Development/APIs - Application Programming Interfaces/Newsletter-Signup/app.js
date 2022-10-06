@@ -18,7 +18,7 @@ app.post("/", function(req, res) {
     const lastname = req.body.lastname;
     const email = req.body.email;
 
-    var data = {
+    const data = {
         members: [
             {
                 email_address: email,
@@ -40,6 +40,7 @@ app.post("/", function(req, res) {
         auth: "AryanK1511:e2c49bbacf85a49168770e3d88287a2d-us14"
     }
 
+    // HTTP Request
     const request = https.request(url, options, function(response) {
         if (response.statusCode === 200) {
             res.sendFile(__dirname + "/success.html");
