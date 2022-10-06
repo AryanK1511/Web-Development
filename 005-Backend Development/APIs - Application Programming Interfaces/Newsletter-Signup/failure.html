@@ -5,12 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Failure</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
 </head>
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1 class="display-4">Uh oh!</h1>
           <p class="lead">There was a problem signing you up. Please try again or contact the developer!</p>
+
+          <form action="/failure"method="post">
+            <button class="btn btn-large btn-warning" type="submit" name="button">Try Again</button>
+          </form>
         </div>
       </div>
 </body>
