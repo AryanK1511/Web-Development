@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="box" id="heading">
-        <h1><%= kindOfDay %></h1>
+        <h1><%= listTitle %></h1>
     </div>
     <div class="box">
         <% for (let i = 0; i < newListItems.length; i++) { %>
@@ -27,11 +27,11 @@
     <footer>
         copyright&copy; Aryan Khurana
     </footer>
-    
+
     <!-- You can create layouts or partials using EJS. For this you will first have to make two files names 'header.ejs' and 'footer.ejs' in the views folder which will contain the layout for the header and footer respectively.
     Syntax for using the layout in other files:
-    <%- include('header'); -%>
+    include('header');
     Random content
-    <%- include('footer'); -%> -->
+    include('footer');-->
 </body>
 </html>
