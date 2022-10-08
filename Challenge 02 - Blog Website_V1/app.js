@@ -20,8 +20,14 @@ app.get("/", (req, res) => {
 })
 
 app.post("/", (req, res) => {
-  let inputText = req.body.composeInput;
-  console.log(inputText);
+  let inputTitle = req.body.postTitle;
+  let inputContent = req.body.postContent;
+
+  const post = {
+    postTitle: inputTitle,
+    postBody: inputContent
+  }
+
 })
 
 app.get("/about", (req, res) => {
