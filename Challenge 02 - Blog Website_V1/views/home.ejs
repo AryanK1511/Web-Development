@@ -2,6 +2,8 @@
 
 <h1>Home</h1>
 <p><%= homeDisplayContent %></p>
-<%= console.log(blogPosts) %>
+<% blogPosts.forEach(function(post) { %>
+    <% console.log(post.postTitle) %>
+<% }); %>
 
 <%- include('partials/footer') -%>
