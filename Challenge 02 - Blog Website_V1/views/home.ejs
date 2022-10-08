@@ -4,7 +4,8 @@
 <p><%= homeDisplayContent %></p>
 <% blogPosts.forEach(function(post) { %>
     <h1><%= post.postTitle %></h1>
-    <p><%= post.postBody.substring(0, 100) %></p>
+    <p><%= post.postBody.substring(0, 100) + " ..." %></p>
+    <a href="/posts/<%= post.postTitle %>">Read More</a>
 <% }); %>
 
 <%- include('partials/footer') -%>
