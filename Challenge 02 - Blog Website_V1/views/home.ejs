@@ -4,7 +4,7 @@
 <p><%= homeDisplayContent %></p>
 <% blogPosts.forEach(function(post) { %>
     <h1><%= post.postTitle %></h1>
-    <p><%= post.postBody %></p>
+    <p><%= post.postBody.substring(0, 100) %></p>
 <% }); %>
 
 <%- include('partials/footer') -%>
