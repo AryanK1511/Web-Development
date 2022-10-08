@@ -19,6 +19,11 @@ app.get("/", (req, res) => {
   res.render("home", {homeDisplayContent: homeStartingContent});
 })
 
+app.post("/", (req, res) => {
+  let inputText = req.body.composeInput;
+  console.log(inputText);
+})
+
 app.get("/about", (req, res) => {
   res.render("about", {aboutDisplayContent: aboutContent});
 })
