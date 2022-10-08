@@ -21,6 +21,17 @@ app.get("/", (req, res) => {
   res.render("home", {homeDisplayContent: homeStartingContent, blogPosts: posts});
 })
 
+app.get("/posts/:postTitle", (req, res) => {
+  const requestedTitle = req.params.postTitle;
+  posts.forEach(function(post) {
+    const storedTitle = post.postTitle;
+
+    if (storedTitle === requestedTitle) {
+      console.log("Match Found");
+    }
+  })
+})
+
 app.post("/compose", (req, res) => {
   
   const post = {
