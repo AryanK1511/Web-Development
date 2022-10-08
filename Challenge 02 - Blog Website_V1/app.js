@@ -15,19 +15,24 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+const posts = []; // Used to store all the blog posts
+
 app.get("/", (req, res) => {
-  res.render("home", {homeDisplayContent: homeStartingContent});
+  res.render("home", {homeDisplayContent: homeStartingContent, blogPosts: posts});
 })
 
-app.post("/", (req, res) => {
-  let inputTitle = req.body.postTitle;
-  let inputContent = req.body.postContent;
-
+app.post("/compose", (req, res) => {
+  
   const post = {
-    postTitle: inputTitle,
-    postBody: inputContent
+    postTitle: req.body.postTitle,
+    postBody: req.body.postContent
   }
 
+  // Adding post to the total blog posts
+  posts.push(post);
+
+  // Redirecting to the home page
+  res.redirect("/");
 })
 
 app.get("/about", (req, res) => {
