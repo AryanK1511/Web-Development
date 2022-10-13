@@ -3,53 +3,61 @@ mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true }
 
 const fruitSchema = new mongoose.Schema ({
     name: String,
-    rating: Number,
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 
 const Fruit = mongoose.model("Fruit", fruitSchema);
 
 // To Insert a single Fruit
-// const fruit = new Fruit ({
-//     name: "Apple",
-//     rating: 7,
-//     review: "Pretty solid as a fruit."
+const fruit = new Fruit ({
+    name: "Apple",
+    rating: 7,
+    review: "Pretty solid as a fruit."
+})
+
+fruit.save();
+
+// const kiwi = new Fruit({
+//     name: "Kiwi",
+//     score: 10,
+//     review: "The best fruit."
 // })
 
-// fruit.save();
+// const orange = new Fruit({
+//     name: "Orange",
+//     score: 4,
+//     review: "Too sour for me"
+// })
 
-const kiwi = new Fruit({
-    name: "Kiwi",
-    score: 10,
-    review: "The best fruit."
-})
+// const banana = new Fruit({
+//     name: "Banana",
+//     score: 3,
+//     review: "Weird Texture"
+// })
 
-const orange = new Fruit({
-    name: "Orange",
-    score: 4,
-    review: "Too sour for me"
-})
+// Fruit.insertMany([kiwi, orange, banana], function(err) {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log("Successfully saved all fruits to fruitsDB!");
+//     }
+// });
 
-const banana = new Fruit({
-    name: "Banana",
-    score: 3,
-    review: "Weird Texture"
-})
-
-Fruit.insertMany([kiwi, orange, banana], function(err) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log("Successfully saved all fruits to fruitsDB!");
-    }
-});
-
-Fruit.find(function(err, fruits) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log(fruits);
-    }
-})
+// Fruit.find(function(err, fruits) {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         mongoose.connection.close();
+//         // Looping through the fruits array and printing only the names
+//         fruits.forEach((fruit) => {
+//             console.log(fruit.name);
+//         })
+//     }
+// })
