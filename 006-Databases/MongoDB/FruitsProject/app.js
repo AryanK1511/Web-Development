@@ -69,11 +69,31 @@ fruit.save();
 // })
 
 // Updating data in database
-Fruit.updateOne({_id: "63476b2c5adceb32fb9c8fbf"}, {name: "Peach", review: "Peaches are pretty good!"}, function(err) {
+// Fruit.updateOne({_id: "63476b2c5adceb32fb9c8fbf"}, {name: "Peach", review: "Peaches are pretty good!"}, function(err) {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log("Successfully updated the document!");
+//     }
+// })
+
+// Deleting data in a database
+// Fruit.deleteOne({_id: "63476bbfd76ceab628f848a2"}, function(err) {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log("Document Successfully deleted");
+//     }
+// })
+
+// You can also use the deleteMany Function
+Fruit.deleteMany({name: "Apple"}, function(err) {
     if (err) {
         console.log(err);
     }
     else {
-        console.log("Successfully updated the document!");
+        console.log("Documents Successfully Deleted");
     }
 })
