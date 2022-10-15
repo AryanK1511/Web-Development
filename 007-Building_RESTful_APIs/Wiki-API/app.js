@@ -19,8 +19,10 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
+// ==================== Requests targeting all articles ===================
 // Using chainable routes
 app.route("/articles")
+
   // When clients want to fetch all the articles in our database
   .get(function (req, res) {
     Article.find({}, function (err, foundArticles) {
@@ -59,6 +61,24 @@ app.route("/articles")
     });
   });
 
+  // =================== Requests targeting a specific article ====================
+  app.route("/articles/:articleTitle")
+    .get(function (req, res) {
+        Article.findOne({title: req.params.articleTitle}, function (err, foundArticle) {
+          if (err) {
+            res.send(err);
+          } else {
+            if (foundArticle) {
+                res.send(foundArticle);
+            }
+            else {
+                res.send("No articles matching the title were found");
+            }
+          }
+        });
+      });
+
+// Listening for requests made by the user
 app.listen(3000, function () {
   console.log("Server started at port 3000");
 });
