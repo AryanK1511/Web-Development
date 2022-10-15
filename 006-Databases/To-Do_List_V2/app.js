@@ -46,10 +46,12 @@ const ListSchema = {
 // Creating a model
 const List = mongoose.model("List", ListSchema);
 
+// =================== HOME ROUTE ====================
 app.get("/", function(req, res) {
 
   const day = date.getDate();
 
+  // Searching for all the items in our database
   Item.find({}, function(err, foundItems) {
     // Only insert the default items if they don't exist already
     if (foundItems.length === 0) {
@@ -61,7 +63,7 @@ app.get("/", function(req, res) {
           console.log("Successfully saved default items to collection.");
         }
       });
-      res.redirect("/");
+      res.redirect("/"); // Redirecting back to the home route
     }
     else {
       if (err) {
@@ -74,6 +76,7 @@ app.get("/", function(req, res) {
   })
 });
 
+// =================== POST ROUTE ====================
 app.post("/", function(req, res){
 
   const itemName = req.body.newItem;
@@ -88,6 +91,7 @@ app.post("/", function(req, res){
     res.redirect("/");
   }
   else {
+    // Searching for an item in database which matches the list name
     List.findOne({name: listName}, function(err, foundList) {
       if (err) {
         console.log(err);
@@ -102,12 +106,10 @@ app.post("/", function(req, res){
 
 });
 
+// =================== DELETE ROUTE ====================
 app.post("/delete", function(req, res) {
   const checkedItemID = req.body.checkbox;
   const listName = req.body.listName;
-
-  console.log(checkedItemID);
-  console.log(listName);
 
   if (listName === "Today") {
     Item.findByIdAndRemove(checkedItemID, function(err) {
@@ -121,6 +123,7 @@ app.post("/delete", function(req, res) {
     });
   }
   else {
+    // Using MongoDB pull to delete custom list items from database
     List.findOneAndUpdate({listName}, {$pull: {items: {_id: checkedItemID}}}, function(err, foundList){
       if (err) {
         console.log(err);
@@ -133,7 +136,9 @@ app.post("/delete", function(req, res) {
   }
 })
 
+// =================== CUSTOM LIST ROUTE ====================
 app.get("/:customListName", function(req, res) {
+  // Using lodash to avoid changing lists when case is changed
   const customListName = _.capitalize(req.params.customListName);
 
   List.findOne({name: customListName}, function(err, foundList) {
@@ -159,6 +164,7 @@ app.get("/:customListName", function(req, res) {
   })
 })
 
+// Listening for requests
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });

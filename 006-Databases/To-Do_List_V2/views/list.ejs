@@ -8,13 +8,16 @@
     <% newListItems.forEach(function(item) { %>
       <form action="/delete" method="post">
         <div class="item">
+          <!-- Checkbox which gives out a post request when checked -->
           <input name="checkbox" value="<%= item._id %>" onchange="this.form.submit()" type="checkbox">
           <p><%=  item.name  %></p>
         </div>
+        <!-- Adding hidden input for custom lists -->
         <input type="hidden" name="listName" value="<%= listTitle %>">
       </form>
     <% }) %> 
 
+      <!-- Form to add a new item to the to do list -->
       <form class="item" action="/" method="post">
         <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
         <button type="submit" value="<%= listTitle %>" name="list">+</button>
