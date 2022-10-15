@@ -4,3 +4,10 @@ As we create our website or web app for users to use, they start generating data
 The other reason to add auth is to restrict access to certain parts of the website depending on the status of the user.
 
 Auth can be done in several ways. The difficult part comes from how secure you are going to make your website. There are different levels of security.
+
+Level 1 - Username and Password Only 
+Level 2 - Encryption
+Level 3 - Hashing with md5
+Level 4 - Hashing and Salting with bcrypt
+Level 5 - Cookies and Sessions
+Level 6 - Google OAuth 2.0 Authentication
