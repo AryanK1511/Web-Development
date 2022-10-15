@@ -36,6 +36,15 @@ const item3 = new Item({
 
 const defaultItems = [item1, item2, item3];
 
+// Creating a new schema for custom lists
+const ListSchema = {
+  name: String,
+  items: [itemsSchema]
+};
+
+// Creating a model
+const List = mongoose.model("List", ListSchema);
+
 app.get("/", function(req, res) {
 
   const day = date.getDate();
@@ -90,6 +99,17 @@ app.post("/delete", function(req, res) {
       res.redirect("/");
     }
   })
+})
+
+app.get("/:customListName", function(req, res) {
+  const customListName = req.params.customListName;
+
+  const list = new List ({
+    name: customListName,
+    items: defaultItems
+  })
+
+  list.save();
 })
 
 app.listen(3000, function() {
