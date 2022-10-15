@@ -31,6 +31,26 @@ app.get("/articles", function(req, res) {
     })
 })
 
+// Client creates one new article
+app.post("/articles", function(req, res) {
+    console.log(req.body.title);
+    console.log(req.body.content);
+
+    const newArticle = new Article({
+        title: req.body.title,
+        content: req.body.content
+    });
+
+    newArticle.save(function(err) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send("Successfully added a new article.");
+        }
+    });
+})
+
 app.listen(3000,function() {
     console.log("Server started at port 3000");
 })
