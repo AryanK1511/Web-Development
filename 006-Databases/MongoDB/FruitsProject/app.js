@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true });
 
 const fruitSchema = new mongoose.Schema ({
-    name: String,
+    // Data Validation using mongoose
+    name: {
+        type: String,
+        required: [true, "Please check your data entry, no name specified!"]
+    },
     rating: {
         type: Number,
         min: 1,
@@ -40,6 +44,7 @@ fruit.save();
 //     review: "Weird Texture"
 // })
 
+// Inserting multiple items in your database
 // Fruit.insertMany([kiwi, orange, banana], function(err) {
 //     if (err) {
 //         console.log(err);
@@ -49,6 +54,7 @@ fruit.save();
 //     }
 // });
 
+// Reading from database
 // Fruit.find(function(err, fruits) {
 //     if (err) {
 //         console.log(err);
@@ -61,3 +67,13 @@ fruit.save();
 //         })
 //     }
 // })
+
+// Updating data in database
+Fruit.updateOne({_id: "63476b2c5adceb32fb9c8fbf"}, {name: "Peach", review: "Peaches are pretty good!"}, function(err) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("Successfully updated the document!");
+    }
+})
