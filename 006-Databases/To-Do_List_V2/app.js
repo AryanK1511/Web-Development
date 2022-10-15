@@ -76,14 +76,28 @@ app.get("/", function(req, res) {
 app.post("/", function(req, res){
 
   const itemName = req.body.newItem;
+  const listName = req.body.list;
 
   const item = new Item({
     name: itemName
-  })
+  });
 
-  item.save();
-
-  res.redirect("/");
+  if (listName === "Today") {
+    item.save();
+    res.redirect("/");
+  }
+  else {
+    List.findOne({name: listName}, function(err, foundList) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        foundList.items.push(item);
+        foundList.save();
+        res.redirect("/" + listName);
+      }
+    })
+  }
 
 });
 
