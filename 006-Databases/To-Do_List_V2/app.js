@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 // Connecting to the to do list database
-mongoose.connect("mongodb://localhost:27017/todolistDB", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:27017/todolistDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://AryanK1511:chocopiE@cluster0.zwntin3.mongodb.net/todolistDB", { useNewUrlParser: true });
 
 // Creating a schema
 const itemsSchema = new mongoose.Schema({
@@ -164,7 +165,12 @@ app.get("/:customListName", function(req, res) {
   })
 })
 
+// For deployment purposes
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 // Listening for requests
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(port, function() {
+  console.log("Server has started successfully.");
 });
