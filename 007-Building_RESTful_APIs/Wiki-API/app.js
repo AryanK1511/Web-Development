@@ -110,6 +110,21 @@ app.route("/articles")
                 }
             }
         )
+     })
+
+     // DELETE a specific article
+     .delete(function(req, res) {
+        Article.deleteOne(
+            {title: req.params.articleTitle},
+            function(err) {
+                if (!err) {
+                    res.send("Successfully deleted the corresponding article");
+                }
+                else {
+                    res.send(err);
+                }
+            }
+        )
      });
 
 // Listening for requests made by the user
