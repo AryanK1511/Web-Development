@@ -104,12 +104,27 @@ app.post("/delete", function(req, res) {
 app.get("/:customListName", function(req, res) {
   const customListName = req.params.customListName;
 
-  const list = new List ({
-    name: customListName,
-    items: defaultItems
+  List.findOne({name: customListName}, function(err, foundList) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      if (!foundList) {
+        // Create a new list
+        const list = new List ({
+          name: customListName,
+          items: defaultItems
+        })
+      
+        list.save();
+        res.redirect("/" + customListName);
+      }
+      else {
+        // Show an existing list
+        res.render("list", {listTitle: customListName, newListItems: foundList.items});
+      }
+    }
   })
-
-  list.save();
 })
 
 app.listen(3000, function() {
