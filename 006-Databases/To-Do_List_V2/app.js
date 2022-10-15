@@ -78,13 +78,19 @@ app.post("/", function(req, res){
 
 });
 
-app.get("/work", function(req,res){
-  res.render("list", {listTitle: "Work List", newListItems: workItems});
-});
+app.post("/delete", function(req, res) {
+  const checkedItemID = req.body.checkbox;
 
-app.get("/about", function(req, res){
-  res.render("about");
-});
+  Item.findByIdAndRemove(checkedItemID, function(err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("Successfully deleted checked item.");
+      res.redirect("/");
+    }
+  })
+})
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
