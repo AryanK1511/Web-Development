@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const ejs = require("ejs");
 const _ = require("lodash");
 
@@ -13,6 +14,18 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+
+// Connecting to database
+mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true})
+
+// Creating a schema for the database
+const postSchema = {
+  title: String,
+  content: String
+}
+
+// Creating a model
+const Post = mongoose.model("Post", postSchema);
 
 let posts = [];
 
@@ -36,14 +49,22 @@ app.get("/compose", function(req, res){
 });
 
 app.post("/compose", function(req, res){
-  const post = {
+
+  console.log(req.body.postTitle);
+  const post = new Post({
     title: req.body.postTitle,
     content: req.body.postBody
-  };
+  })
 
-  posts.push(post);
-
-  res.redirect("/");
+  //; Adding a callback so that redirection only happens when post is saved without any errors
+  post.save(function(err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.redirect("/");
+    }
+  });
 
 });
 
