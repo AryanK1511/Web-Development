@@ -34,12 +34,29 @@ const item3 = new Item({
   name: "<-- Hit this to delete an item."
 })
 
+const defaultItems = [item1, item2, item3];
+
+Item.insertMany(defaultItems, function(err) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log("Successfully saved default items to collection.");
+  }
+})
+
 app.get("/", function(req, res) {
 
-const day = date.getDate();
+  const day = date.getDate();
 
-  res.render("list", {listTitle: "Today", newListItems: items});
-
+  Item.find({}, function(err, foundItems) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.render("list", {listTitle: "Today", newListItems: foundItems});
+    }
+  })
 });
 
 app.post("/", function(req, res){
