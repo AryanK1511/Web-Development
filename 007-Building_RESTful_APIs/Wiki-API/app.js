@@ -63,6 +63,8 @@ app.route("/articles")
 
   // =================== Requests targeting a specific article ====================
   app.route("/articles/:articleTitle")
+
+    // GET a specific article
     .get(function (req, res) {
         Article.findOne({title: req.params.articleTitle}, function (err, foundArticle) {
           if (err) {
@@ -76,7 +78,23 @@ app.route("/articles")
             }
           }
         });
-      });
+      })
+
+     // PUT a specific article
+     .put(function(req,res) {
+        Article.updateOne(
+            {title: req.params.articleTitle}, 
+            {title: req.body.title, content: req.body.content},
+            function(err) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send("Successfully updated article.");
+                }
+            }
+        )
+     });
 
 // Listening for requests made by the user
 app.listen(3000, function () {
