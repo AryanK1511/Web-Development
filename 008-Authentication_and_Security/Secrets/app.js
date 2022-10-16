@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require("mongoose-findorcreate");
 
 // const bcrypt = require("bcrypt");
 // const saltRounds = 10;
@@ -39,17 +41,44 @@ mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true})
 
 const userSchema = new mongoose.Schema({
     email: String,
-    password: String
+    password: String,
+    googleId: String
 });
 
 userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
+passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+      cb(null, { id: user.id, username: user.username, name: user.displayName });
+    });
+  });
+  
+  passport.deserializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, user);
+    });
+  });
+
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/secrets",
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 // Encrypting the database
 // const secret = "Thisisourlittlesecret.";
@@ -60,15 +89,25 @@ app.get("/", function(req, res) {
     res.render("Home");
 })
 
+// =================== GOOGLE AUTHENTICATION ====================
+app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }));
+
+app.get("/auth/google/secrets", 
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirect to the secrets page.
+    res.redirect('/secrets');
+  });
+
 // ==================== LOGIN ROUTE ===================
 app.get("/login", function(req, res) {
     res.render("Login");
-})
+});
 
 // ==================== REGISTER ROUTE ====================
 app.get("/register", function(req, res) {
     res.render("Register");
-})
+});
 
 // ==================== SECRETS ROUTE ====================
 app.get("/secrets", function(req, res) {
@@ -78,7 +117,7 @@ app.get("/secrets", function(req, res) {
     else {
         res.redirect("/login");
     }
-})
+});
 
 // ====================== LOGOUT ROUTE ===================
 app.get("/logout", function(req, res) {
@@ -90,7 +129,7 @@ app.get("/logout", function(req, res) {
             res.redirect("/");
         }
     });
-})
+});
 
 // ==================== POSTING TO THE REGISTER ROUTE ====================
 app.post("/register", function(req, res) {
@@ -121,7 +160,7 @@ app.post("/register", function(req, res) {
             })
         }
     })
-})
+});
 
 // ==================== POSTING TO THE LOGIN ROUTE ====================
 app.post("/login", function(req, res) {
@@ -140,7 +179,7 @@ app.post("/login", function(req, res) {
                 res.redirect("/secrets");
             })
         }
-    })
+    });
 
     // const username = req.body.username;
     // const password = req.body.password;
@@ -165,4 +204,4 @@ app.post("/login", function(req, res) {
 // Listing for user requests
 app.listen(3000, function() {
     console.log("Server started on port 3000");
-})
+});
