@@ -53,20 +53,30 @@ const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+  
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
+    });
+  });
+
 // passport.serializeUser(User.serializeUser());
 // passport.deserializeUser(User.deserializeUser());
 
-passport.serializeUser(function(user, cb) {
-    process.nextTick(function() {
-      cb(null, { id: user.id, username: user.username, name: user.displayName });
-    });
-  });
+// passport.serializeUser(function(user, cb) {
+//     process.nextTick(function() {
+//       cb(null, { id: user.id, username: user.username, name: user.displayName });
+//     });
+//   });
   
-  passport.deserializeUser(function(user, cb) {
-    process.nextTick(function() {
-      return cb(null, user);
-    });
-  });
+//   passport.deserializeUser(function(user, cb) {
+//     process.nextTick(function() {
+//       return cb(null, user);
+//     });
+//   });
 
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
@@ -137,6 +147,7 @@ app.post("/submit", function(req, res) {
     const submittedSecret = req.body.secret;
 
     User.findById(req.user.id, function(err, foundUser) {
+        console.log(req.user.id);
         if (err) {
             console.log(err);
         }
