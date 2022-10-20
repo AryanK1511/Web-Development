@@ -28,3 +28,16 @@ $("button").html("<em>Hey</em>")
 // Manipulating attributes with jQuery
 console.log($("img").attr("src"));
 console.log($("a").attr("href", "https://www.youtube.com/"));
+
+// Adding event listeners 
+$("button").click(function() {
+    $("h1").css("color", "purple");
+});
+
+$("input").keypress(function(event) {
+    $("h1").text(event.key);
+})
+
+$("h1").on("mouseover", function() {
+    $("h1").css("color", "black");
+})
