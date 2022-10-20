@@ -41,3 +41,10 @@ $("input").keypress(function(event) {
 $("h1").on("mouseover", function() {
     $("h1").css("color", "black");
 })
+
+// Adding and removing elements
+$("h1").before("<button>New</button>");
+$("h1").after("<button>New</button>");
+$("h1").prepend("<button>New</button>"); //  Creates inside element before content
+$("h1").append("<button>New</button>"); // Creates inside element after content
+$("button").remove();
