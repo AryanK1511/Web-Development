@@ -8,8 +8,11 @@ const buttonColors = ["red", "blue", "green", "yellow"];
 
 // Generates a random number between 0 and 3
 function nextSequence() {
+    // Increasing the level
     level++;
+
     $("#level-title").text("Level " + level);
+
     // Reset for next level
     userClickedPattern = [];
 
@@ -24,15 +27,15 @@ function nextSequence() {
 
     // Playing sound
     playSound(randomChosenColor);
-
-    console.log(gamePattern);
 }
 
+// Function to play the sound according to the color
 function playSound(name) {
     let sound = new Audio("sounds/" + name + ".mp3");
     sound.play();
 }
 
+// Function to animate whatever button is pressed
 function animatePress(currentColor) {
     $("#" + currentColor).addClass("pressed");
 
@@ -46,11 +49,12 @@ function animatePress(currentColor) {
 $(".btn").click(function() {
     let userChosenColour = $(this).attr("id");
     userClickedPattern.push(userChosenColour);
+
     animatePress(userChosenColour);
     playSound(userChosenColour);
 
+    // Passing in the length of clicks - 1
     checkAnswer(userClickedPattern.length - 1);
-    console.log(userClickedPattern);
 })
 
 // Starting the game if any key is pressed
@@ -64,7 +68,11 @@ $(document).on("keypress", function() {
 
 // Checking whether the user is entering the correct pattern
 function checkAnswer(currentLevel) {
+    // Checking whether the latest color is the same
+    console.log(gamePattern[currentLevel]);
+    console.log(userClickedPattern[currentLevel]);
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+        // Checking to make sure next sequence is only called once the lengths are same
       if (userClickedPattern.length === gamePattern.length){
         // Calling next seq after a 1000 ms delay.
         setTimeout(function () {
@@ -85,6 +93,7 @@ function checkAnswer(currentLevel) {
     }
 }
 
+// Resetting all the values before starting over
 function startOver() {
     level = 0;
     gamePattern = [];
