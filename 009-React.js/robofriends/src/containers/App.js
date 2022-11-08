@@ -3,6 +3,7 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import "./app.css";
+import ErrorBoundary from '../components/ErrorBoundary'
 
 // App is a smart component as it is a class and has a state
 class App extends React.Component {
@@ -39,7 +40,9 @@ class App extends React.Component {
         <h1 className="f1">RoboFriends</h1>
         <SearchBox searchChange={this.onSearchChange} />
         <Scroll>
-          <CardList robots={filteredRobots} />
+            <ErrorBoundary>
+                <CardList robots={filteredRobots} />
+            </ErrorBoundary>
         </Scroll>
       </div>
     );
