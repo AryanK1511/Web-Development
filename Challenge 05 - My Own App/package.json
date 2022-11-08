@@ -1,0 +1,42 @@
+{
+  "name": "bookworm-web-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AryanK1511/Bookworm-Web-App.git"
+  },
+  "keywords": [],
+  "author": "Aryan Khurana",
+  "license": "ISC",
+  "engines": {
+    "node": "18.12.0"
+  },
+  "bugs": {
+    "url": "https://github.com/AryanK1511/Bookworm-Web-App/issues"
+  },
+  "homepage": "https://github.com/AryanK1511/Bookworm-Web-App#readme",
+  "dependencies": {
+    "axios": "^1.1.3",
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "https": "^1.0.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.6.7",
+    "mongoose-findorcreate": "^3.0.0",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^7.1.2",
+    "validator": "^13.7.0"
+  }
+}

@@ -1,0 +1,65 @@
+<%- include("partials/header"); -%>
+
+    <section class="reading-list-page">
+        <br><br><br><br><br>
+        <% if (typeof userFirstName === 'undefined' || userFirstName === "" || userFirstName === null) { %>
+            <h1 class="reading-list-title">My Reading List</h1>
+        <% } else { %>
+            <h1 class="reading-list-title"><%= userFirstName %>'s Reading List</h1>
+        <% } %>
+
+        <% if (userBookData.length > 0) { %>
+            <div class="options">
+                <!-- Sorting options -->
+                <div class="sort-options">
+                    <p>Sort By:</p>
+                    <div class="radio-btns">
+                        <form action="/sort" method="post">
+                            <% if (sortType === 1 || sortType === 0) { %>
+                                <input type="radio" id="option1" name="option" value="1" onchange="this.form.submit()" checked>
+                                <label for="option1">Recently Added</label><br>
+                                <input type="radio" id="option2" name="option" value="2" onchange="this.form.submit()">
+                                <label for="option2">Name</label><br>
+                            <% } else { %>
+                                <input type="radio" id="option1" name="option" value="1" onchange="this.form.submit()">
+                                <label for="option1">Recently Added</label><br>
+                                <input type="radio" id="option2" name="option" value="2" onchange="this.form.submit()" checked>
+                                <label for="option2">Name</label><br>
+                            <% } %>
+                            
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Delete all Button -->
+                <a class="reading-list-link" href="/delete-all"><button class="btn btn-primary del-all-btn" id="reading-list-btn">Delete All Books</button></a>
+            </div>
+        <% } else { %>
+            <div class="no-books-message">
+                <h3>Hmmm... Looks like your reading list is empty!!</h3>
+                <p>Use the search bar above to look for books that you want to add to your reading list and click on the "Add to Reading List" button to add the books to this list.</p>
+            </div>
+        <% } %>
+
+        <!-- Card Design -->
+        <div class="container">
+            <div class="row">
+                <% for (let i = 0; i < userBookData.length; i++) { %>
+                    <div class="col-lg-6 col-xl-4 my-4" data-aos="slide-left" data-aos-offset="200"
+                    data-aos-delay="50"
+                    data-aos-duration="1000">
+                        <div class="card h-100 mx-3">
+                            <div class="card-body">
+                              <h5 class="card-title"><%= userBookData[i].bookName  %></h5>
+                              <h6 class="card-subtitle mb-2"><%= userBookData[i].bookAuthor %></h6>
+                              <a class="reading-list-link" href="/delete/<%= userBookData[i].bookId %>"><button class="btn btn-primary" id="reading-list-btn">Delete Book</button></a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+    </section>
+
+<%- include("partials/footer"); -%>

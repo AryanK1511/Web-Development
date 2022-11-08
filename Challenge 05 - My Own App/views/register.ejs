@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+<section class="register-page">
+    <div class="custom-form mx-auto">
+
+        <!-- Rendering the errors if they form has them -->
+        <% if (typeof errors != 'undefined') { %>
+            <% if (errors.length > 0) { %>
+                <% errors.forEach((error) => { %>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <%= error.msg %>
+                    </div>
+                <% }) %>
+            <% } %>
+        <% } %>
+
+        <form class="lr-form" action="/register" method="post">
+            <h1>Sign Up</h1>
+            <input type="text" name="firstname" placeholder="First Name" id="firstname">
+            <input type="text" name="lastname" placeholder="Last Name" id="lastname">
+            <input type="text" name="username" placeholder="Email" id="username">
+            <input type="password" name="password" placeholder="Password" id="password">
+            <button type="submit" value="Register" id="register-btn" class="form-btn">Register</button>
+        </form>
+        <hr><h2 style="color: white;">OR</h2><hr>
+        <a href="/auth/google" class="google-link">
+          <button type="button" class="login-with-google-btn" >
+              Sign up with Google
+          </button>
+      </a>
+        <p>Already have an account? <br>  <a href="/login">Sign In</a></p>
+        <div class="error"></div>
+    </div>
+</section>
+
+</body>
+</html>

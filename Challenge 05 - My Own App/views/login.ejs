@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+<section class="login-page">
+    <div class="custom-form mx-auto">
+        <form class="lr-form" action="/login" method="post">
+            <h1>Sign In</h1>
+            <input type="text" name="username" placeholder="Email" id="username">
+            <input type="password" name="password" placeholder="Password" id="password">
+            <button class="form-btn" type="submit" value="Login" id="login-btn">Login</button>
+        </form>
+        <hr><h2 style="color: white;">OR</h2><hr>
+        <a href="/auth/google" class="google-link">
+            <button type="button" class="login-with-google-btn" >
+                Sign in with Google
+            </button>
+        </a>
+        <p>Don't have an account? <br>  <a href="/register">Sign Up</a></p>
+    </div>
+</section>
+
+</body>
+</html>

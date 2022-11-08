@@ -1,0 +1,38 @@
+<%- include("partials/header"); -%>
+
+    <section class="search-results-page">
+        <br><br><br><br><br>
+        <h1 class="search-title">Search Results</h1>
+
+        <!-- Card Design -->
+        <div class="container">
+            <div class="row">
+                <% for (let i = 0; i < bookData.length; i++) { %>
+                    <div class="col-lg-6 col-xl-4 my-4" data-aos="fade-left" data-aos-offset="200"
+                    data-aos-delay="50"
+                    data-aos-duration="1000">
+                        <div class="card h-100 mx-3">
+                            <% if (typeof bookData[i].volumeInfo.imageLinks !== 'undefined') { %>
+                                <img class="card-img-top mx-auto" src="<%= bookData[i].volumeInfo.imageLinks.thumbnail %>" alt="Book Image">
+                            <% } else { %>
+                                <img class="card-img-top mx-auto" alt="Book Image">
+                            <% } %>
+                            <div class="card-body">
+                              <h5 class="card-title"><%= bookData[i].volumeInfo.title  %></h5>
+                              <h6 class="card-subtitle mb-2"><%= bookData[i].volumeInfo.authors %></h6>
+                              <% if (typeof bookData[i].volumeInfo.description !== 'undefined') { %>
+                                <p class="card-text text-muted"><%= bookData[i].volumeInfo.description.substring(0, 100) + " ..."%>  <button type="button" id="popver-btn" style="color: #adedea;" id="popover" class="popover-body"  data-bs-trigger="focus" data-bs-toggle="popover" data-bs-title="<%= bookData[i].volumeInfo.title %>" data-bs-content="<%= bookData[i].volumeInfo.description %>">Read More</button></p>
+                              <% } else { %>
+                                <p class="card-text text-muted"><%= bookData[i].volumeInfo.description%>
+                              <% } %>
+                                <a class="btn btn-primary add-to-list-btn" href="/reading-list/<%= bookData[i].id %>">Add to Reading List</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+    </section>
+
+<%- include("partials/footer"); -%>
