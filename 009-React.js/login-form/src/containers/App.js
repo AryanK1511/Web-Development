@@ -1,32 +1,11 @@
-import React, { useState } from 'react';
-import Login from '../components/Login';
-
-var userIsRegistered = !true;
+import React from "react";
 
 function App() {
-
-  const [headingText, setHeadingText] = useState("Hello");
-  const [isMousedOver, setMouseOver] = useState(false);
-
-  function handleClick() {
-    setHeadingText("Submitted");
-  }
-
-  function handleMouseOver() {
-    setMouseOver(true);
-  }
-
-  function handleMouseOut() {
-    setMouseOver(false);
-  }
-
   return (
-    <div className="container"> 
-    <h1>{headingText}</h1>
-    {
-      userIsRegistered ? <Login buttonValue="Login"/> : <Login buttonValue="Register"/>
-    }
-    <button style={{backgroundColor: isMousedOver ? "black" : "white"}} onClick={handleClick} onMouseOver={handleMouseOver}  onMouseOut={handleMouseOut} type='submit'>{userIsRegistered ? "Login" : "Register"}</button>
+    <div className="container">
+      <h1>Hello </h1>
+      <input type="text" placeholder="What's your name?" />
+      <button>Submit</button>
     </div>
   );
 }

@@ -25,11 +25,7 @@
     font-weight: 200;
   }
   
-  form {
-    padding: 20px 0;
-    position: relative;
-  }
-  form input {
+  input {
     border: 1px solid rgba(252, 252, 252, 0.4);
     background-color: rgba(252, 252, 252, 0.2);
     width: 250px;
