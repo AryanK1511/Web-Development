@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Login from '../components/Login';
 
-var isLoggedIn = !true;
-
-function renderConditionally() {
-  if (isLoggedIn) {
-    return <h1>Hello</h1>;
-  }
-  else {
-    return <Login />;
-  }
-}
+var userIsRegistered = !true;
 
 function App() {
+
+  const [headingText, setHeadingText] = useState("Hello");
+  const [isMousedOver, setMouseOver] = useState(false);
+
+  function handleClick() {
+    setHeadingText("Submitted");
+  }
+
+  function handleMouseOver() {
+    setMouseOver(true);
+  }
+
+  function handleMouseOut() {
+    setMouseOver(false);
+  }
+
   return (
-    <div className="container">
-      {renderConditionally()}
+    <div className="container"> 
+    <h1>{headingText}</h1>
+    {
+      userIsRegistered ? <Login buttonValue="Login"/> : <Login buttonValue="Register"/>
+    }
+    <button style={{backgroundColor: isMousedOver ? "black" : "white"}} onClick={handleClick} onMouseOver={handleMouseOver}  onMouseOut={handleMouseOut} type='submit'>{userIsRegistered ? "Login" : "Register"}</button>
     </div>
   );
 }

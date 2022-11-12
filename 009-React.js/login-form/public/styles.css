@@ -44,7 +44,7 @@
     font-weight: 300;
   }
   
-  form button {
+  button {
     appearance: none;
     outline: 0;
     background-color: white;
