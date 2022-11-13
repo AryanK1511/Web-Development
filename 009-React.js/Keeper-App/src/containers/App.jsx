@@ -1,19 +1,18 @@
-import React from 'react';
-import Header from '../components/Header';
-import Note from '../components/Note';
-import Footer from '../components/Footer';
-import notes from '../notes';
+import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Note from "../components/Note";
+import CreateArea from "../components/CreateArea";
 
-class App extends React.Component {
-    render() {
-        return(
-            <div>
-                <Header />
-                {notes.map(noteItem => <Note key={noteItem.id} title={noteItem.title} content={noteItem.content}/>)};
-                <Footer />
-            </div>
-        )
-    }
+function App() {
+  return (
+    <div>
+      <Header />
+      <CreateArea />
+      <Note key={1} title="Note title" content="Note content" />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
