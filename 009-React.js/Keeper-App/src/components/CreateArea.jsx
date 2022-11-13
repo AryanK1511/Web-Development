@@ -24,6 +24,10 @@ function CreateArea(props) {
     props.onAdd(note);
     // Prevents the reloading of the page
     event.preventDefault();
+    setNote({
+      title: "",
+      content: ""
+    });
   }
 
   return (
