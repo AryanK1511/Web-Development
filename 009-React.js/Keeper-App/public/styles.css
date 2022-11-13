@@ -67,7 +67,7 @@ footer p {
   outline: none;
 }
 
-form.create-note {
+form {
   position: relative;
   width: 480px;
   margin: 30px auto 20px auto;
@@ -76,8 +76,8 @@ form.create-note {
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
-form.create-note input,
-form.create-note textarea {
+form input,
+form textarea {
   width: 100%;
   border: none;
   padding: 4px;
@@ -86,7 +86,7 @@ form.create-note textarea {
   font-family: inherit;
   resize: none;
 }
-form.create-note button {
+form button {
   position: absolute;
   right: 18px;
   bottom: -18px;
